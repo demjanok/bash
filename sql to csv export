@@ -1,0 +1,10 @@
+user=******
+pass='********'
+date=`date +%Y-%m-%d`
+from_date=$1
+to_date=$2
+host=10.4.1.32
+mysql -u$user -p$pass -h$host -B -e "USE smpp_exchange; select * from messages WHERE created_at BETWEEN CAST('$from_date' AS DATE) AND CAST('$to_date' AS DATE);" | sed "s/'/\'/;s/\t/\",\"/g;s/^/\"/;s/$/\"/;s/\n//g" > sms_$date.csv
+
+пример
+./sms.sh '2017-09-01' '2017-09-30'
