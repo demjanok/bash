@@ -7,7 +7,7 @@ then
 	date
     echo "$process is running..."
 else
-	date
+        date
     echo "$process not running, relaunching..."
     php -f /var/www/eldorado/brood bot:slack  >> /var/log/slack.log
 fi
